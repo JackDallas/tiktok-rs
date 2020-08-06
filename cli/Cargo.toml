@@ -1,0 +1,15 @@
+[package]
+name = "tiktokcli"
+version = "0.1.0"
+authors = ["Jack Dallas <3620144+JackDallas@users.noreply.github.com>"]
+edition = "2018"
+
+
+[[bin]]
+name = "tiktok"
+path = "src/main.rs"
+
+[dependencies]
+log = "0.4.11"
+simple_logger = "1.6.0"
+tiktokrs = { path = "../lib" }
