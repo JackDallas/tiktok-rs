@@ -24,7 +24,7 @@ impl User {
   }
 
   pub fn get_all_video_page_links(self: &Self) -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let user_page_url = format!("https://tiktok.com/{}", self.username);
+    let user_page_url = format!("https://www.tiktok.com/{}", self.username);
 
     debug!("GETing: {}", user_page_url);
     let user_page_body = reqwest::blocking::get(&user_page_url)?.text()?;
@@ -87,7 +87,7 @@ impl User {
 
     let output = if cfg!(target_os = "windows") {
       Command::new("cmd")
-              .args(&["/C", &format!("node ./external/tiktok-signature/browser.js \"{}\"", url)])
+              .args(&["/C", &format!("node external\\tiktok-signature\\browser.js \"{}\"", url)])
               // .args(&["/C", "node "])
               .output()
               .expect("failed to execute process")
@@ -98,11 +98,12 @@ impl User {
               .output()
               .expect("failed to execute process")
     };
-  
+    debug!("Signing Completed!");
+    
     let sig_json_raw = String::from_utf8_lossy(&output.stdout);
     let err = String::from_utf8_lossy(&output.stderr);
 
-      debug!("{}",err);
+    debug!("{}",err);
     let sig_json: SignatureJSONResponse = serde_json::from_str(&sig_json_raw).expect("Signature Failed!");
 
     *url = format!("{}{}{}{}{}", url, "&verifyFp=", &sig_json.verify_fp, "&_signature=", &sig_json.signature);
