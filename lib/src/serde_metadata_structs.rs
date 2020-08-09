@@ -189,20 +189,12 @@ pub struct AbTestVersion {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Parameters {
-    #[serde(rename = "download_guide")]
-    pub download_guide: DownloadGuide,
     #[serde(rename = "autoplay_test")]
     pub autoplay_test: AutoplayTest,
     #[serde(rename = "side_nav_test")]
     pub side_nav_test: SideNavTest,
-    #[serde(rename = "open_url_test")]
-    pub open_url_test: OpenUrlTest,
-}
-
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DownloadGuide {
-    pub vid: String,
+    #[serde(rename = "download_guide")]
+    pub download_guide: DownloadGuide,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -219,7 +211,7 @@ pub struct SideNavTest {
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct OpenUrlTest {
+pub struct DownloadGuide {
     pub vid: String,
 }
 
@@ -580,20 +572,12 @@ pub struct AbTestVersion2 {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Parameters2 {
-    #[serde(rename = "download_guide")]
-    pub download_guide: DownloadGuide2,
     #[serde(rename = "autoplay_test")]
     pub autoplay_test: AutoplayTest2,
     #[serde(rename = "side_nav_test")]
     pub side_nav_test: SideNavTest2,
-    #[serde(rename = "open_url_test")]
-    pub open_url_test: OpenUrlTest2,
-}
-
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DownloadGuide2 {
-    pub vid: String,
+    #[serde(rename = "download_guide")]
+    pub download_guide: DownloadGuide2,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -610,7 +594,7 @@ pub struct SideNavTest2 {
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct OpenUrlTest2 {
+pub struct DownloadGuide2 {
     pub vid: String,
 }
 
@@ -623,6 +607,7 @@ pub struct Aa59D67C2123F094D0D6798Ffe651C4D {
 #[serde(rename_all = "camelCase")]
 pub struct AbtestMetricsBf884930Ec2D14D3 {
 }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
