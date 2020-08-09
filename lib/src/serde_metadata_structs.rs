@@ -757,4 +757,5 @@ pub struct Challenge {
 pub struct SignatureJSONResponse {
     pub signature: String,
     pub verify_fp: String,
+    pub cookies: String,
 }

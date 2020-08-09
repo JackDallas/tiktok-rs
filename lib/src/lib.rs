@@ -50,6 +50,7 @@ impl User {
 
       debug!("GETing: {}", pagination_url);
       let pagination_response_raw = reqwest::blocking::get(&pagination_url)?.text()?;
+      debug!("{}", &pagination_response_raw);
       debug!("Deserializing: {}", pagination_url);
       let pagination_response: PaginationJSONResponse = serde_json::from_str(&pagination_response_raw)?;
 
@@ -86,9 +87,9 @@ impl User {
     debug!("Signing: {}", url);
 
     let output = if cfg!(target_os = "windows") {
-      Command::new("cmd")
-              .args(&["/C", &format!("node external\\tiktok-signature\\browser.js \"{}\"", url)])
-              // .args(&["/C", "node "])
+      Command::new("node")
+              .arg("external/tiktok-signature/browser.js")
+              .arg(&url)
               .output()
               .expect("failed to execute process")
     } else {
@@ -104,6 +105,7 @@ impl User {
     let err = String::from_utf8_lossy(&output.stderr);
 
     debug!("{}",err);
+    debug!("{}",sig_json_raw);
     let sig_json: SignatureJSONResponse = serde_json::from_str(&sig_json_raw).expect("Signature Failed!");
 
     *url = format!("{}{}{}{}{}", url, "&verifyFp=", &sig_json.verify_fp, "&_signature=", &sig_json.signature);
